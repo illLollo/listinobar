@@ -1,0 +1,247 @@
+@keyframes Fade-In {
+    0% {
+        display: none;
+        transform: translateY(-10vh);
+    }
+
+    100% {
+        display: flex;
+        transform: translateY(0vh);
+    }
+}
+
+
+@keyframes Fade-Out {
+    0% {
+        display: flex;
+        transform: translateY(0vh);
+    }
+
+    100% {
+        display: none;
+        transform: translateY(-10vh);
+    }
+}
+
+.app {
+    overflow-x: hidden;
+    position: relative;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10vw;
+    align-items: center;
+}
+
+.app::before {
+    content: "";
+    background-image: url('https://lh3.googleusercontent.com/p/AF1QipMriusFL46mEEI3ihr_MWPL-uXu2tk21KK7-Nwj=s680-w680-h510');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: blur(10px) brightness(1.2);
+    height: 110vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.nav {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 1vw;
+    background-color: rgba(255, 255, 255, 0.5);
+    font-size: 2em;
+    font-weight: bolder;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.form {
+    scale: 140%;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3em;
+    gap: 1em;
+    border-radius: 2em;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cont_div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5em;
+    width: fit-content;
+    height: fit-content;
+}
+
+.input {
+    border-radius: 0.5em;
+    outline: 1px solid aquamarine;
+    border: none;
+    padding: 1em 2em;
+    transition: 0.3s ease-in-out;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    width: 40%;
+    font-size: 1rem;
+}
+
+.label {
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.input:focus {
+    transform: scale(1.05);
+    outline: 2px solid aquamarine;
+    width: 75%;
+    justify-self: stretch;
+}
+
+.input::placeholder {
+    text-align: left;
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+.input:focus::placeholder {
+    color: transparent;
+}
+
+.submit,
+.logoutbtn {
+    margin-top: 2vh;
+    border-radius: 2em;
+    padding: 0.5em 1em;
+    background-color: unset;
+    outline: 1px solid black;
+    border: none;
+    font-size: 1.3rem;
+    font-weight: bolder;
+    transition: 0.2s ease-in-out;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    align-self: stretch;
+}
+
+.submit:hover,
+.logoutbtn:hover {
+    background-color: black;
+    color: white;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.errortext {
+    font-size: 1.3rem;
+    color: red;
+    transition: 0.2s ease-in-out;
+}
+
+.h1 {
+    width: fit-content;
+    height: fit-content;
+}
+
+.fadein {
+    animation: Fade-In 0.1s ease-out;
+}
+
+.fadeout {
+    animation: Fade-Out 0.1s ease-in-out;
+}
+
+.img {
+    width: auto;
+    object-fit: cover;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.img:hover {
+    cursor: pointer;
+}
+
+@media (max-width: 640px) {
+    .form {
+        scale: 100%;
+    }
+
+    .container {
+        justify-content: center;
+    }
+
+    .container {
+        margin-right: 0;
+    }
+
+    .nav {
+        justify-content: center;
+        gap: 1em;
+    }
+
+    .img {
+        position: inherit;
+    }
+
+    .nav {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 640px) {
+    .form {
+        scale: 100%;
+    }
+
+    .nav {
+        justify-content: center;
+    }
+
+    .container {
+        justify-content: center;
+    }
+
+    .container {
+
+        margin-right: 0;
+    }
+
+    .body {
+        overflow-y: hidden;
+    }
+}
+
+@media (min-width: 768px) {
+    .form {
+        scale: 110%;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .container {
+        justify-content: flex-end;
+        margin-right: 10vw;
+    }
+}
+
+@media (min-width: 1280px) {
+    .form {
+        scale: 110%;
+    }
+}

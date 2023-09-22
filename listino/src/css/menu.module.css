@@ -1,0 +1,337 @@
+.app {
+
+    overflow-x: hidden;
+    position: relative;
+}
+
+.nav {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 1vw;
+    background-color: rgba(255, 255, 255, 0.5);
+    font-size: 2em;
+    font-weight: bolder;
+    position: fixed;
+    transition: 0.1s ease-out;
+    z-index: 0;
+}
+.mainSection {
+    border-radius: 2em;
+    background-color: rgba(0, 0, 0, 0.699);
+    padding: 0.5em 2em;
+    z-index: 0;
+}
+.mainSection * {
+    color: white;
+}
+.mainSection .buttons {
+    border: 1px solid white;
+    outline: unset;
+}
+
+.outview {
+    position: fixed;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.img {
+    width: auto;
+    object-fit: cover;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.img:hover {
+    cursor: pointer;
+}
+.h1 {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 3rem;
+}
+.logout {
+    margin-right: 3vw;
+    border-radius: 2em;
+    padding: 0.5em 1em;
+    background-color: unset;
+    outline: 1px solid black;
+    border: none;
+    font-size: 1.3rem;
+    font-weight: bolder;
+    transition: 0.2s ease-in-out;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.logout:hover {
+    background-color: black;
+    color: white;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.product_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+.product_container p {
+    text-align: center;
+}
+.name,
+.price,
+.amount,
+.partial {
+    font-size: 1.5rem;
+    width: fit-content;
+}
+.buttons {
+    border-radius: 2em;
+    padding: 0.5em 1em;
+    background-color: unset;
+    outline: 1px solid black;
+    border: none;
+    font-size: 1.3rem;
+    font-weight: bolder;
+    transition: 0.2s ease-in-out;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.buttons:hover {
+    background-color: black;
+    color: white;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.bottom_container {
+    width: 100%;
+    height: 10vh;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    align-items: center;
+    left: 0;
+    font-size: 2rem;
+    font-weight: bolder;   
+    box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.7);
+}
+.bottom_container::before {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.432);
+    filter: blur(10px);
+    height: 10vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+}
+.prodcontainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 4em;
+    margin-top: 15vh;
+    margin-bottom: 20vh;
+}
+.cart {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.800);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main_cart_frame {
+    scale: 170%;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2em;
+    border-radius: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+}
+.riepilogo_info {
+    overflow-y: auto;
+    height: 20vh;
+}
+.totaltext {
+    font-size: 2rem;
+    font-weight: bolder;
+}
+.subtot {
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+.riepilogo_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+.cart_button_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2em;
+}
+.toSend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    word-wrap: break-word;
+    flex-wrap: wrap;
+}
+.toSend p {
+    word-wrap: break-word;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.parent_toSend {
+    padding: 1em;
+}
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+.doingcontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 1em;
+}
+.orderContainer {
+    border-radius: 2em;
+    background-color: rgba(0, 0, 0, 0.699);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2em;
+    padding: 1em 1.5em;
+}
+.orderContainer * {
+    color: white;
+    font-size: 1.5rem;
+}
+.mainordercontainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 15vh;
+    text-align: center;
+    gap: 2em;
+}
+@media (max-width: 640px) {
+    .img {
+        min-width: 20vw;
+    }
+    .h1 {
+        display: none;
+    }
+    .nav {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .bottom_container {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+    .cart_button {
+        font-size: 1.1rem;
+        scale: 80%;
+    }
+    .main_cart_frame {
+        scale: 90%;
+    }
+    .product_container {
+        flex-wrap: wrap;
+    }
+    .product_container * {
+        font-size: 1.3rem;
+    }
+    .mainSection {
+        scale: 90%;
+    }
+    .mainordercontainer {
+        flex-direction: column;
+    }
+    .orderContainer * {
+        font-size: 1rem;
+    }
+    .orderContainer {
+        scale: 90%;
+    }
+
+}
+
+@media (min-width: 640px) {
+    .nav {
+        z-index: 1;
+    }
+    .h1 {
+        display: none;
+    }
+    .mainordercontainer {
+        flex-direction: column;
+    }
+    .doingcontainer {
+        margin-top: 10vh;
+    }
+    .orderContainer {
+        scale: 95%;
+    }
+    .mainSection {
+        scale: 95%;
+    }
+    .main_cart_frame {
+        scale: 120%;
+    }
+}
+
+@media (min-width: 768px) {
+    .mainordercontainer {
+        flex-direction: row;
+    }
+    
+}
+
+@media (min-width: 1024px) {
+
+    .h1 {
+        display: flex;
+    }
+    .orderContainer * {
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    
+    .orderContainer * {
+        font-size: 1.5rem;
+    }
+    
+}
+
+@media (min-width: 1536px) {
+
+}
