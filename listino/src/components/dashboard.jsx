@@ -4,7 +4,7 @@ import AdminProd from './adminProd'
 import useCheckLogin from "../hooks/useLoginSELL";
 import styles from '../css/dashboard.module.css'
 import Logout from "./slog";
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion'
 import ProductModifier from "./productModifier";
 
 const Dashboard = () =>
@@ -55,14 +55,16 @@ const Dashboard = () =>
                 </button>
                 <Logout prompt={'Esci'} className={styles.logout}/>
             </motion.nav>
-
-            {
-                showModifier.show && 
-                <ProductModifier 
-                    modprops={showModifier}
-                    handleProps={setShowModifier}
-                />
-            }
+            
+            <AnimatePresence>
+                {
+                    showModifier.show && 
+                    <ProductModifier 
+                        modprops={showModifier}
+                        handleProps={setShowModifier}
+                    />
+                }
+            </AnimatePresence>
             
             {prods.length === 0 ? <h1>Nessun Prodotto!</h1> : 
                 <div className={styles.maincontainer}>

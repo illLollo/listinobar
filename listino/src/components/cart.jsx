@@ -40,6 +40,7 @@ const Cart = ({handleShowCart, handleShowResponse, orderObj, subtot}) =>
             initial={{y: '-100vh', opacity: 0}}
             animate={{y: 0, opacity: 1}}
             exit={{y: '-100vh', opacity: 0}}
+            transition={{duration: 0.3}}
           >
             <h1 className={styles.totaltext}>Totale Ordine </h1>
             <div className={styles.riepilogo_container}>

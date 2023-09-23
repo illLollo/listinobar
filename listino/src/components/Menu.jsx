@@ -10,7 +10,7 @@ import useCheckLogin from '../hooks/useLoginBUY'
 import styles from '../css/menu.module.css'
 import postFetchObj from '../functions/postFetchObj'
 import OrderUSER from './orderUSER'
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion'
 
 const Menu = (props) =>
 {
@@ -146,24 +146,32 @@ const Menu = (props) =>
           ORDER: {JSON.stringify(finalOrder)}
         </div>
         } */}
-      {
-        totalAmount !== 0 && 
-        <motion.div 
-          className={styles.bottom_container}
-          initial={{y: '100vh', opacity: 0}}
-          animate={{y: 0, opacity: 1}}
-        >
-          Subitototale: ${totalAmount.toFixed(2)}
-          <button className={styles.buttons + ' ' + styles.cart_button} onClick={() => setShowCart((prev) => !prev)}>
-            Mostra Carrello
-          </button>
-        </motion.div>
-      }
+        <AnimatePresence>
+          {
+            totalAmount !== 0 && 
+            <motion.div 
+              className={styles.bottom_container}
+              initial={{y: '100vh', opacity: 0}}
+              animate={{y: 0, opacity: 1, transition: 0.3}}
+              exit={{y: '100vh', opacity: 0}}
+              transition={{duration: 2}}
+            >
+              Subitototale: ${totalAmount.toFixed(2)}
+              <button className={styles.buttons + ' ' + styles.cart_button} onClick={() => setShowCart((prev) => !prev)}>
+                Mostra Carrello
+              </button>
+            </motion.div>
+          }
+        </AnimatePresence>
 
-      {showCart && <Cart handleShowCart={setShowCart} handleShowResponse={setShowFinal} orderObj={finalOrder} subtot={totalAmount}/>}
+        <AnimatePresence>
+            {showCart && <Cart handleShowCart={setShowCart} handleShowResponse={setShowFinal} orderObj={finalOrder} subtot={totalAmount}/>}
+        </AnimatePresence>
 
-      {showFinal.status === 'true' && <Success/>}
-      {showFinal.status === 'false' && <Failed/>}
+      <AnimatePresence>
+        {showFinal.status === 'true' && <Success/>}
+        {showFinal.status === 'false' && <Failed/>}
+      </AnimatePresence>
 
     </div>
   );

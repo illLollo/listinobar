@@ -48,7 +48,7 @@ const ProductModifier = ({modprops, handleProps}) =>
     }, [modprops.cost, modprops.name, newName, newCost])
     
     return (
-        <div>
+        <motion.div>
             {showModified.showModified === 'true' && <Success prompt={'Ordine Modificato Con Successo'}/>}
             {showModified.showModified === 'false' && <Failed prompt={'Ordine Non Modificato'}/>}
             {showModified.showModified == null && 
@@ -64,6 +64,8 @@ const ProductModifier = ({modprops, handleProps}) =>
                         className={styles.mainmodcontainer}
                         initial={{y: '-100vh', opacity: 0}}
                         animate={{y: 0, opacity: 1}}
+                        exit={{y: '-100vh'}}
+                        // transition={{duration: 0.3}}
                     >
                         <h1>Modifica Prodotto</h1>
                         <div className={styles.inputscontainer}>
@@ -104,9 +106,7 @@ const ProductModifier = ({modprops, handleProps}) =>
                     </motion.div>
                 </motion.div>
             }
-            
-        </div>
-
+        </motion.div>
     )
 }
 export default ProductModifier
