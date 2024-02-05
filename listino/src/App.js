@@ -11,12 +11,12 @@ const App = () => {
     return (
       <Router>
         <Routes>
-          <Route path='/' element={<Navigate to='/login' />} />
-          <Route path='/login' Component={Login} />
-          <Route path='/menu' Component={Menu} />
-          <Route path='/venditore' Component={Venditore} />
-          <Route path='/venditore/dashboard' Component={Dashboard} />
-          <Route path='/venditore/dashboard/add' Component={AddProduct} />
+          <Route index path='/' element={<Navigate to='/login' />} />
+          <Route path='/login' element={<Navigate to='/login' />} Component={Login} />
+          <Route path='/menu' element={<Navigate to='/menu' />} Component={Menu} />
+          <Route path='/venditore' element={<Navigate to='/venditore' />} Component={Venditore} />
+          <Route path='/venditore/dashboard' element={<Navigate to='/venditore/dashboard' />} Component={Dashboard} />
+          <Route path='/venditore/dashboard/add' element={<Navigate to='/venditore/dashboard/add' />} Component={AddProduct} />
         </Routes>
       </Router>
     )

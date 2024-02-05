@@ -26,7 +26,7 @@ const handleModify = async (e, sendable, {newName, newCost, productid}, setError
     
     try
     {
-        const response = await postFetchObj('http://167.235.9.22/listinophp/settings/modify/modifyProd.php', {name: newName, cost: newCost, productid: productid})
+        const response = await postFetchObj('http://server632.ddns.net/listinophp/settings/modify/modifyProd.php', {name: newName, cost: newCost, productid: productid})
         setError({showModified: response ? 'true' : 'false'})
     }
     catch (exception) { setError({showModified: 'false'})}

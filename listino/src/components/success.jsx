@@ -18,7 +18,7 @@ const Success = ({prompt, callback}) =>
                 initial={{y: '-100vh', opacity: 0}}
                 animate={{y: 0, opacity: 1}}
             >
-                <video src="http://167.235.9.22/listinophp/img/verified.mp4" muted autoPlay playsInline></video>
+                <video src="http://server632.ddns.net/listinophp/img/verified.mp4" muted autoPlay playsInline></video>
                 <h1 className={styles.h1}>{prompt || 'Ordine Inviato Con Successo!'}</h1>
             </motion.div>
         </section>

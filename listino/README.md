@@ -13,6 +13,6 @@ Successivamente se non vi si dovesse aprire automaticamente il browser collegate
 ## N.B. REACTJS DEVE ESSERE INSTALLATO NEL PC, CON NODEJS (v20.6.1) e NPM (10.1.0)
 
 ## In alternativa provate a collegarvi a 
-### `http://167.235.9.22:3000`
+### `http://server632.ddns.net:3000`
 
 ## Per visualizzare l'applicazione

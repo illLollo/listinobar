@@ -12,7 +12,7 @@ const DoneOrder = ({details, ownername, subtot, iterator}) =>
         >
             <div className={styles.details}>
                 {
-                    JSON.parse(details).map((product) => 
+                    JSON?.parse(details)?.map((product) => 
                         <div className={styles.prod}>
                             <p className={styles.infos}>{product.amount}x {product.name}</p>
                         </div>

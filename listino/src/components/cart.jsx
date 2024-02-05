@@ -2,6 +2,7 @@ import React from "react";
 import postFetchObj from "../functions/postFetchObj";
 import styles from '../css/menu.module.css'
 import { motion } from 'framer-motion'
+import { Navigate } from 'react-router-dom'
 
 const handleSendOrder = async (finalOrder, totalAmount, handleShowCart, handleShowResponse) => {
 
@@ -9,11 +10,12 @@ const handleSendOrder = async (finalOrder, totalAmount, handleShowCart, handleSh
 
     let session = localStorage.getItem('token')
 
-    if (session === null) window.location = '/login'
+    if (session === null) 
+      return <Navigate to='/login' />
 
     session = JSON.parse(session)
 
-    const response = await postFetchObj('http://167.235.9.22/listinophp/login/sendOrder.php', 
+    const response = await postFetchObj('http://server632.ddns.net/listinophp/login/sendOrder.php', 
     {
       details: JSON.stringify(JSON.stringify(finalOrder)),
       subtot: totalAmount.toFixed(2),
@@ -46,7 +48,7 @@ const Cart = ({handleShowCart, handleShowResponse, orderObj, subtot}) =>
             <div className={styles.riepilogo_container}>
               <section className={styles.riepilogo_info}>
               {
-                orderObj.map((product, i) => 
+                orderObj?.map((product, i) => 
                 {
                   return (
                     <div className={styles.parent_toSend}>

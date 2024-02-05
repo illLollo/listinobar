@@ -6,6 +6,8 @@ import styles from '../css/dashboard.module.css'
 import Logout from "./slog";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion'
 import ProductModifier from "./productModifier";
+import ProductDeleter from "./productDeleter";
+import { useNavigate } from "react-router-dom"
 
 const Dashboard = () =>
 {
@@ -13,22 +15,25 @@ const Dashboard = () =>
 
     const ab = new AbortController()
 
-    useCheckLogin('http://167.235.9.22/listinophp/login/logToken.php',
+    const navigate = useNavigate()
+
+    useCheckLogin('http://server632.ddns.net/listinophp/login/logToken.php',
     async () => 
     {
-        const res = await postFetchNoBody('http://167.235.9.22/listinophp/menu/getProducts.php', ab.signal)
+        const res = await postFetchNoBody('http://server632.ddns.net/listinophp/menu/getProducts.php', ab.signal)
 
         console.log(res)
   
         setProds(res);
     },
-    () => window.location = '/login', ab)
+    () => navigate('/login'), ab)
 
 
     const [navHidden, setNavHidden] = useState(false)
     const { scrollY } = useScroll()
 
     const [showModifier, setShowModifier] = useState({show: false})
+    const [showDeleter, setShowDeleter] = useState({show: false})
 
     useEffect(() => console.log("SHOWMOD:", showModifier), [showModifier])
 
@@ -49,7 +54,7 @@ const Dashboard = () =>
                 <h1 className={styles.h1}>Dashboard BAR</h1>
                 <button
                     className={styles.add}
-                    onClick={() => window.location = '/venditore/dashboard/add'}
+                    onClick={() => navigate('/venditore/dashboard/add')}
                     >
                     Aggiungi Un Prodotto
                 </button>
@@ -65,6 +70,15 @@ const Dashboard = () =>
                     />
                 }
             </AnimatePresence>
+            <AnimatePresence>
+                {
+                    showDeleter.show && 
+                    <ProductDeleter
+                        delProds={showDeleter}
+                    />
+
+                }
+            </AnimatePresence>
             
             {prods.length === 0 ? <h1>Nessun Prodotto!</h1> : 
                 <div className={styles.maincontainer}>
@@ -74,12 +88,12 @@ const Dashboard = () =>
                     >
                         Prodotti
                     </motion.h1>
-                    {prods.map((product, i) => <AdminProd key={product.productid} iterator={i} productid={product.productid} name={product.name} cost={product.cost} setProdModifier={setShowModifier}/> )}
+                    {prods?.map((product, i) => <AdminProd key={product.productid} iterator={i} productid={product.productid} name={product.name} cost={product.cost} setProdModifier={setShowModifier} setProdDeleter={setShowDeleter}/>)}
                 </div> 
             }
             <motion.button 
                 className={styles.buttons}
-                onClick={() => window.location= '/venditore'}
+                onClick={() => navigate('/venditore')}
                 initial={{y: '100vh', opacity: 0}}
                 animate={{y: 0, opacity: 1}}
                 transition={{delay: 0.5 + (prods.length / 10)}}

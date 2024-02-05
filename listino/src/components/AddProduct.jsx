@@ -6,6 +6,7 @@ import useCheckLogin from "../hooks/useLoginSELL"
 import styles from '../css/dashboard.module.css'
 import Logout from "./slog"
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 const validateInputs = (name, cost) => 
 {    
@@ -18,15 +19,17 @@ const handleAddProduct = async (prodName, prodCost, setFetchStatus) =>
 {
     try
     {
-        setFetchStatus({show: await postFetchObj('http://167.235.9.22/listinophp/settings/add/addNewProd.php', {name: prodName, cost: prodCost}) ? 'success' : 'failed'})
+        setFetchStatus({show: await postFetchObj('http://server632.ddns.net/listinophp/settings/add/addNewProd.php', {name: prodName, cost: prodCost}) ? 'success' : 'failed'})
     }
     catch (exception) { setFetchStatus({show: 'failed'})}
 }
 const AddProduct = () =>
 {
-    useCheckLogin('http://167.235.9.22/listinophp/login/logToken.php', null, 
+    const navigate = useNavigate()
 
-    (err) =>  window.location = '/login')
+    useCheckLogin('http://server632.ddns.net/listinophp/login/logToken.php', null, 
+
+    (err) =>  navigate('/login'))
     
 
     const [sendable, setSendable] = useState(false)
@@ -61,7 +64,7 @@ const AddProduct = () =>
                 <h1 className={styles.h1}>Aggiungi Prodotto</h1>
                 <button
                     className={styles.buttons}
-                    onClick={() => window.location = '/venditore/dashboard'}
+                    onClick={() => navigate('/venditore/dashboard')}
                 >
                     Indietro
                 </button>

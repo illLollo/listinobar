@@ -11,7 +11,7 @@ const Failed = ({prompt, callback}) =>
     return (
         <section className={styles.fullscreen}>
         <div className={styles.main}>
-            <video src="http://167.235.9.22/listinophp/img/not.mp4" muted autoPlay playsInline></video>
+            <video src="http://server632.ddns.net/listinophp/img/not.mp4" muted autoPlay playsInline></video>
             <h1>{prompt || 'Ordine Non Inviato!'}</h1>
         </div>
     </section>

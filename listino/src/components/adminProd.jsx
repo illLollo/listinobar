@@ -9,22 +9,23 @@ const handleDelete = async (productid, setDeleter) =>
 {
     try 
     {
-        setDeleter({showCanceled: await postFetchObj('http://167.235.9.22/listinophp/settings/deleteProd.php', productid) ? 'success' : 'failed'})
+        setDeleter({showCanceled: await postFetchObj('http://server632.ddns.net/listinophp/settings/deleteProd.php', productid) ? 'success' : 'failed'})
+        setDeleter({show: true})
     }
     catch (exception) { setDeleter({showCanceled: 'failed'}) }
 }
 
-const AdminProd = ({productid, name, cost, iterator, setProdModifier}) => 
+const AdminProd = ({productid, name, cost, iterator, setProdModifier, setProdDeleter}) => 
 {
-    const [showChanges, setShowChanges] = useState({})
 
     return (
         <motion.section 
-            className={styles.doingorder}
-            initial={{y: '-50vh', opacity: 0}}
-            animate={{y: 0, opacity: 1}}
-            transition={ {delay: 0.5 + (iterator / 15)} }
+        className={styles.doingorder}
+        initial={{y: '-50vh', opacity: 0}}
+        animate={{y: 0, opacity: 1}}
+        transition={ {delay: 0.5 + (iterator / 15)} }
         >
+            
             <div className={styles.prodcontainer}>
                 <div className={styles.textcontainer}>
                     <p className={styles.infos}>{name}</p>
@@ -41,17 +42,13 @@ const AdminProd = ({productid, name, cost, iterator, setProdModifier}) =>
                     </button>
                     <button 
                         className={styles.buttons}
-                        onClick={() => handleDelete(productid, setShowChanges)}
+                        onClick={() => handleDelete(productid, setProdDeleter)}
                         >
                         Elimina
                     </button>
                 </div>
 
             </div>
-                {showChanges.showCanceled === 'success' && <Success prompt={'Prodotto Cancellato Con Successo'}/>}
-                {showChanges.showCanceled === 'failed' && <Failed prompt={'Prodotto Non Cancellato'}/>}
-                {showChanges.showModified === 'success' && <Success prompt={'Prodotto Modificato Correttamente'}/> }
-                {showChanges.showModified === 'failed'  && <Failed prompt={'Prodotto Non Modificato'}/>}
 
         </motion.section>
     )

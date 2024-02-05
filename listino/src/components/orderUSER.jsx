@@ -12,7 +12,7 @@ const OrderUSER = ({details, subtot, iterator}) =>
                 transition={ {delay: 1 + (iterator / 15)} }
             >
         {
-            details.map(element => 
+            details?.map(element => 
             <p>
                 ${element.price} di {(+element.amount)}x {element.name}
             </p>

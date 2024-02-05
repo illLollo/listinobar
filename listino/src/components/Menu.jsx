@@ -11,11 +11,14 @@ import styles from '../css/menu.module.css'
 import postFetchObj from '../functions/postFetchObj'
 import OrderUSER from './orderUSER'
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 const Menu = (props) =>
 {
-  useCheckLogin('http://167.235.9.22/listinophp/login/logToken.php', null, 
-  (err) => console.error(err))
+  const navigate = useNavigate()
+
+  useCheckLogin('http://server632.ddns.net/listinophp/login/logToken.php', null, 
+  (err) => navigate('/login'))
 
   const [products, setProducts] = useState([])
   const [doingOrders, setDoingOrders] = useState([])
@@ -46,9 +49,9 @@ const Menu = (props) =>
   
     const uid = JSON.parse(localStorage.getItem('token')).uid
   
-    Promise.all([ postFetchNoBody('http://167.235.9.22/listinophp/menu/getProducts.php', ab.signal), 
-                postFetchObj('http://167.235.9.22/listinophp/menu/getUserDONE.php', uid, ab.signal),
-                postFetchObj('http://167.235.9.22/listinophp/menu/getUserDOING.php', uid, ab.signal) 
+    Promise.all([ postFetchNoBody('http://server632.ddns.net/listinophp/menu/getProducts.php', ab.signal), 
+                postFetchObj('http://server632.ddns.net/listinophp/menu/getUserDONE.php', uid, ab.signal),
+                postFetchObj('http://server632.ddns.net/listinophp/menu/getUserDOING.php', uid, ab.signal) 
       ])
       .then(([products, done, doing]) => {
   
@@ -57,7 +60,7 @@ const Menu = (props) =>
         setDoneOrders(done)
   
       })
-      .catch((err) => { window.location = '/login' })
+      .catch((err) => { return navigate('/login') })
   
     return () => { ab.abort() }
 
@@ -92,7 +95,7 @@ const Menu = (props) =>
         </motion.nav>
         <div className={styles.prodcontainer}>
           {
-            products.map((element, i) =>
+            products?.map((element, i) =>
               <Product
                 key={element.productid}
                 name={element.name}
@@ -111,11 +114,11 @@ const Menu = (props) =>
           <div className={styles.doingcontainer}>
           {doingOrders.length > 0 && <h1>Ordini in preparazione</h1>}
             {
-              doingOrders.map((element, i) => 
+              doingOrders?.map((element, i) => 
                 
                 <OrderUSER
                 key={element.orderid}
-                details={JSON.parse(element.details)}
+                details={JSON?.parse(element.details)}
                 subtot={element.subtot}
                 iterator={i}
                 /> 
@@ -125,11 +128,11 @@ const Menu = (props) =>
           <div className={styles.doingcontainer}>
             {doneOrders.length > 0 && <h1>Ordini completati</h1>}
             {
-              doneOrders.map((element, i) => 
+              doneOrders?.map((element, i) => 
 
                 <OrderUSER
                 key={element.orderid}
-                details={JSON.parse(element.details)}
+                details={JSON?.parse(element.details)}
                 subtot={element.subtot}
                 iterator={i}
                 /> 

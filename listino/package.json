@@ -8,12 +8,11 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set HTTPS=true & set SSL_CRT_FILE=\"C:\\Certbot\\archive\\server632.ddns.net\\fullchain1.pem\" & set SSL_KEY_FILE=\"C:\\Certbot\\archive\\server632.ddns.net\\privkey1.pem\" & react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -37,6 +36,7 @@
     ]
   },
   "devDependencies": {
-    "framer-motion": "^10.16.4"
+    "framer-motion": "^10.16.4",
+    "react-router-dom": "^6.20.0"
   }
 }

@@ -4,14 +4,16 @@ import postFetchObj from '../functions/postFetchObj'
 import useCheckLogin from '../hooks/useLoginLOG'
 import styles from '../css/login.module.css'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
-const handleLoginFunction = async (e, username, password, setShowError) =>
+const handleLoginFunction = async (e, username, password, setShowError, handleNavigate) =>
 {
     e.preventDefault()
     
     const ab = new AbortController()
+
     
-    const response = await postFetchObj('http://167.235.9.22/listinophp/login/login.php', 
+    const response = await postFetchObj('http://server632.ddns.net/listinophp/login/login.php', 
     {
         username: username,
         password: password,
@@ -26,21 +28,21 @@ const handleLoginFunction = async (e, username, password, setShowError) =>
             case 'sell': 
             {
                 localStorage.setItem('token', JSON.stringify(response))
-                window.location = '/venditore'
+                handleNavigate('/venditore')
                 break;
             }
             case 'buy':
-            {
-                localStorage.setItem('token', JSON.stringify(response))
-                window.location = '/menu'
-                break;
-            }
-            case 'server':
-            {
-                setShowError({status: true, prompt: 'Errore di connessione al server!'})
-                console.log(response) //error handling
-                break;
-            } 
+                {
+                    localStorage.setItem('token', JSON.stringify(response))
+                    handleNavigate('/menu')
+                    break;
+                }
+                case 'server':
+                    {
+                        setShowError({status: true, prompt: 'Errore di connessione al server!'})
+                        console.log(response) //error handling
+                        break;
+                    } 
             case null: 
             {
                 setShowError({status: true, prompt: 'Username e\\o password errati!'})
@@ -48,20 +50,20 @@ const handleLoginFunction = async (e, username, password, setShowError) =>
                 break;
             }
             case 'fields':
-            {
-                setShowError({status: true, prompt: 'Riempi i campi!'})
-                break;
-            }
-            default:
-            {
-                setShowError({status: true, prompt: 'Errore nella richiesta dei dati!'})
-                console.error('error fetching') //error handling
-                break;
-            }
+                {
+                    setShowError({status: true, prompt: 'Riempi i campi!'})
+                    break;
+                }
+                default:
+                    {
+                        setShowError({status: true, prompt: 'Errore nella richiesta dei dati!'})
+                        console.error('error fetching') //error handling
+                        break;
+                    }
         }
 
     }
-    catch (error) { alert(error) }
+    catch (error) { console.error(error) }
     
     
     return () => ab.abort()
@@ -70,16 +72,17 @@ const hideError = (setShowError) =>
 {
     // setTimeout(() => {
         setShowError({status: false})
-    // }, 500);
-}
+        // }, 500);
+    }
 const Login = () => 
 {
-    useCheckLogin('http://167.235.9.22/listinophp/login/logToken.php', (err) => setShowError(true))
-
+    useCheckLogin('http://server632.ddns.net/listinophp/login/logToken.php', (err) => setShowError(true))
+    const navigate = useNavigate()
+    
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [showError, setShowError] = useState({status: false})
-
+    
     return (
         <div className={styles.app + ' App'}>
             <nav className={styles.nav}>
@@ -99,7 +102,9 @@ const Login = () =>
                         animate={{y: 0, opacity: 1}}
                         exit={{y: '-100vh', opacity: 0}}
                         transition={{delay: 0.2}}
-                    >Servizio BAR</motion.h1>
+                    >
+                        Servizio BAR
+                    </motion.h1>
                         <div className={styles.cont_div}>
                             <motion.label 
                                 className={styles.label}
@@ -156,7 +161,7 @@ const Login = () =>
                             className={styles.submit} 
                             type="submit" 
                             value="Login" 
-                            onClick={(e) => handleLoginFunction(e, username, password, setShowError)} 
+                            onClick={(e) => handleLoginFunction(e, username, password, setShowError, navigate)} 
                             initial={{y: '-100vh', opacity: 0}}
                             animate={{y: 0, opacity: 1}}
                             exit={{y: '-100vh', opacity: 0}}

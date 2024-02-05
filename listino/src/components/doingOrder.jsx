@@ -8,7 +8,7 @@ const handleConfirmOrder = async (orderid, setSuccessOrder) =>
     const ab = new AbortController()
     console.log(orderid)
 
-    const response = await postFetchObj('http://167.235.9.22/listinophp/login/completeOrder.php', orderid, ab.signal)
+    const response = await postFetchObj('http://server632.ddns.net/listinophp/login/completeOrder.php', orderid, ab.signal)
 
     console.log(response)
 
@@ -28,7 +28,7 @@ const DoingOrder = ({details, ownername, subtot, orderid, handleShowStatus, iter
         >
             <div className={styles.details}>
                 {
-                    JSON.parse(details).map((element, index) =>
+                    JSON?.parse(details)?.map((element, index) =>
                         <div className={styles.prod} key={index}>
                             <p className={styles.infos}>
                                 {element.amount}x {element.name}
